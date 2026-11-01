@@ -1,0 +1,34 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api/v1/tienda
+
+spring:
+  application:
+    name: TiendaApp
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:tienda_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:paulo3144615}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    com.tunombre.tienda: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: INFO
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET:BEpJyFGQqWmobS4yY2fpHaDWxRQVq04OMd0CsMdG1Eo=}
+    token-expiration: ${JWT_EXPIRATION:600000}
